@@ -1,0 +1,75 @@
+# ============================================================
+#  .gitignore para proyecto LaTeX
+#  Se ignoran todos los archivos auxiliares generados por
+#  la compilación de LaTeX. Los PDF finales SÍ se suben.
+# ============================================================
+
+# --- Archivos auxiliares de LaTeX ---
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+*.dvi
+*.xdv
+*-converted-to.*
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+*.alg
+*.loa
+*.thm
+*.nav
+*.pre
+*.snm
+*.vrb
+*.idx
+*.ilg
+*.ind
+*.ist
+*.acn
+*.acr
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.lzo
+*.lzs
+*.slg
+*.slo
+*.sls
+*.brf
+*.lol
+
+# --- Carpeta de compilación temporal de latexmk ---
+.latexmk_tmp/
+
+# --- Archivos de editores ---
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*~
+\#*\#
+.DS_Store
+Thumbs.db
+.claude
+
+# --- El PDF compilado se sube explícitamente si se quiere ---
+# compilado/*.pdf   # <-- descomenta esta línea si NO quieres subir el PDF
