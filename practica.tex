@@ -1,0 +1,157 @@
+% !TEX program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% ====================================================================
+% ARCHIVO PRINCIPAL — Práctica Grupal Temas 2 y 3
+% Asignatura: Dirección de Recursos Humanos I
+% Doble Grado ADE-Ingenierías — Universidad de Granada
+% Empresa analizada: CaixaBank
+%
+% INSTRUCCIONES DE COMPILACIÓN:
+%   pdflatex practica.tex && pdflatex practica.tex
+%   (dos pasadas para generar índice y referencias correctamente)
+%
+% Para la bibliografía, si añadís citas al archivo library.bib:
+%   pdflatex practica.tex && bibtex practica && pdflatex practica.tex && pdflatex practica.tex
+% ====================================================================
+
+\documentclass[print, color]{ugrTFG}
+
+% -------------------------------------------------------------------
+%  VERSIÓN ELECTRÓNICA PARA TABLETA
+%  Cambiad "print" por "tablet" para generar un PDF adaptado a tabletas.
+% -------------------------------------------------------------------
+
+% -------------------------------------------------------------------
+%  INFORMACIÓN DEL TRABAJO Y LOS AUTORES
+% -------------------------------------------------------------------
+
+\renewcommand{\miTipoTrabajo}{Práctica Grupal}
+\renewcommand{\miAsignatura}{Dirección de Recursos Humanos I}
+
+\newcommand{\miTitulo}{Análisis y Diseño de Puestos de Trabajo y Planificación de Recursos Humanos en CaixaBank\xspace}
+
+% Para un trabajo grupal, \miNombre contiene todos los autores.
+% En la portada aparecerá como "Presentado por:" seguido de los nombres.
+% Ajustadlos con vuestros nombres reales.
+\newcommand{\miNombre}{%
+  Nombre Apellidos 1\\
+  Nombre Apellidos 2\\
+  Nombre Apellidos 3\\
+  Nombre Apellidos 4\\
+  Nombre Apellidos 5%
+}
+
+\newcommand{\miGrado}{Doble Grado ADE-Ingenierías}
+\newcommand{\miFacultad}{Facultad de Ciencias Empresariales y Escuela Técnica Superior de Ingenierías}
+\newcommand{\miUniversidad}{Universidad de Granada}
+
+% Nombre del profesor/a responsable de la asignatura
+\newcommand{\miTutor}{
+  Nombre del Profesor/a \\ \emph{Departamento de Organización de Empresas}
+}
+
+\newcommand{\miCurso}{2024-2025\xspace}
+
+% -------------------------------------------------------------------
+%  PAQUETES ADICIONALES PARA ESTE TRABAJO
+% -------------------------------------------------------------------
+
+\usepackage{tabularx}       % Tablas con columnas de anchura automática
+\usepackage{multirow}       % Celdas que ocupan varias filas
+\usepackage{float}          % Control de posición de figuras [H]
+\usepackage{eurosym}        % Símbolo del euro: \euro{}
+\usepackage{enumitem}       % Control avanzado de listas
+
+% Cajas de color para recordatorios al equipo
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins, breakable}
+
+% Color corporativo UGR
+\definecolor{ugrazul}{RGB}{0,75,135}
+
+% Entorno "notaequipo": caja amarilla para recordatorios y preguntas guía.
+% Usadlo cuando queráis dejar instrucciones a vuestros compañeros sobre
+% qué información hay que buscar o qué preguntar en la entrevista.
+\newtcolorbox{notaequipo}{
+  enhanced,
+  breakable,
+  colback=yellow!15!white,
+  colframe=orange!70!black,
+  fonttitle=\sffamily\bfseries,
+  title={Recordatorio del equipo},
+  left=6pt, right=6pt, top=4pt, bottom=4pt,
+  before skip=8pt, after skip=8pt
+}
+
+% -------------------------------------------------------------------
+%  METADATOS PDF
+% -------------------------------------------------------------------
+\hypersetup{
+  pdftitle={\miTitulo},
+  pdfauthor={Grupo --- Dirección de Recursos Humanos I --- UGR},
+  pdfsubject={Práctica Grupal — CaixaBank}
+}
+
+% ====================================================================
+\begin{document}
+% ====================================================================
+
+\maketitle
+
+% -------------------------------------------------------------------
+%  FRONTMATTER
+%  (páginas previas numeradas en romano: resumen, índice)
+% -------------------------------------------------------------------
+\frontmatter
+
+% Resumen ejecutivo del trabajo
+\input{preliminares/resumen}
+
+% Tabla de contenidos
+\input{preliminares/tablacontenidos}
+
+% -------------------------------------------------------------------
+%  MAINMATTER
+%  (cuerpo del trabajo, numerado en arábigo)
+% -------------------------------------------------------------------
+\mainmatter
+
+% ---- Capítulo 1: Introducción de la empresa ----
+\input{capitulos/cap1_empresa}
+
+% ---- Capítulo 2: Tema 2 — Análisis y Diseño de Puestos ----
+\input{capitulos/cap2_tema2}
+
+% ---- Capítulo 3: Tema 3 — Planificación de RRHH ----
+\input{capitulos/cap3_tema3}
+
+% -------------------------------------------------------------------
+%  APPENDIX
+%  (apéndices, numerados con letras)
+% -------------------------------------------------------------------
+\appendix
+\pdfbookmark[-1]{Apéndices}{appendix}
+
+% Apéndice A: Preguntas y respuestas de la entrevista
+\input{apendices/entrevista}
+
+% -------------------------------------------------------------------
+%  GLOSARIO (opcional — comentad si no lo usáis)
+% -------------------------------------------------------------------
+% \input{glosario}
+
+% -------------------------------------------------------------------
+%  BACKMATTER
+%  (bibliografía)
+% -------------------------------------------------------------------
+\backmatter
+\pdfbookmark[-1]{Referencias}{BM-Referencias}
+
+\bibliographystyle{alpha-es}
+% Otros estilos: abbrv, plain, alpha-es, plain-es
+\begin{small}
+  \bibliography{library.bib}
+\end{small}
+
+\end{document}

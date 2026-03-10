@@ -2,7 +2,7 @@
 ### Doble Grado ADE-Ingenierías · Universidad de Granada
 
 > **Esta es la Entrega 1 de 4** del proyecto grupal de la asignatura.
-> Temas cubiertos en esta entrega: **Tema 2** (Análisis y Diseño de Puestos) y **Tema 3** (Planificación de RRHH).
+> Temas cubiertos: **Tema 2** (Análisis y Diseño de Puestos) y **Tema 3** (Planificación de RRHH).
 
 ---
 
@@ -28,6 +28,8 @@ Cada entrega incluye:
 - **Trabajo escrito** (este documento LaTeX, exportado a PDF).
 - **Presentación oral de 10 minutos** en clase. Todos los miembros del grupo deben intervenir.
 
+Esta plantilla está basada en la clase `ugrTFG`, la plantilla institucional de la UGR para Trabajos de Fin de Grado, adaptada al formato de práctica grupal de asignatura.
+
 ---
 
 ## Estructura del repositorio
@@ -35,30 +37,32 @@ Cada entrega incluye:
 ```
 RecursosHumanosCaixaBank/
 │
-├── main.tex                        # Archivo principal (compilar este)
+├── practica.tex                          # Archivo principal (compilar este)
+├── ugrTFG.cls                       # Clase LaTeX institucional UGR
+├── library.bib                      # Bibliografía (formato BibTeX)
+├── glosario.tex                     # Glosario opcional
+├── alpha-es.bst                     # Estilo bibliográfico (español)
+├── plain-es.bst                     # Estilo bibliográfico alternativo
 │
-├── secciones/                      # Un archivo .tex por sección
-│   ├── 00_portada.tex
-│   ├── 01_introduccion.tex         # Empresa y organigrama
-│   ├── 02_tema2_analisis_puestos.tex
-│   ├── 03_tema2_descripcion_puestos.tex
-│   ├── 04_tema2_rediseno_puestos.tex
-│   ├── 05_tema2_nuevas_tendencias.tex
-│   ├── 06_tema3_planificacion.tex
-│   ├── 07_tema3_oferta_demanda.tex
-│   ├── 08_tema3_equilibrio.tex
-│   ├── 09_tema3_criterios_evaluacion.tex
-│   ├── 10_tema3_procesos_sustractivos.tex
-│   ├── 11_tema3_alternativas.tex
-│   └── 12_anexo.tex                # Preguntas y respuestas de la entrevista
+├── preliminares/
+│   ├── declaracion-originalidad.tex # Declaración grupal de originalidad
+│   ├── resumen.tex                  # Resumen ejecutivo del trabajo
+│   └── tablacontenidos.tex          # Tabla de contenidos
 │
-├── imagenes/                       # Organigrama, logos, gráficos
-├── compilado/                      # PDF final (se puede ignorar en Git si es grande)
-├── .gitignore                      # Ignora archivos auxiliares de LaTeX
-└── README.md                       # Este archivo
+├── capitulos/
+│   ├── cap1_empresa.tex             # Capítulo 1: Empresa y organigrama
+│   ├── cap2_tema2.tex               # Capítulo 2: Tema 2 (análisis de puestos)
+│   └── cap3_tema3.tex               # Capítulo 3: Tema 3 (planificación RRHH)
+│
+├── apendices/
+│   └── entrevista.tex               # Apéndice A: Preguntas y respuestas
+│
+├── img/                             # Imágenes de portada UGR + vuestras figuras
+├── .gitignore                       # Ignora archivos auxiliares de LaTeX
+└── README.md                        # Este archivo
 ```
 
-**Regla de oro:** cada persona trabaja sobre **su/sus archivo(s) asignado(s)** para evitar conflictos de fusión.
+**Regla de oro:** cada persona trabaja sobre **su/sus archivo(s) asignado(s)** para evitar conflictos de fusión en Git.
 
 ---
 
@@ -78,12 +82,10 @@ RecursosHumanosCaixaBank/
 ### Paso 1 — Instalar Git (si no lo tienes)
 
 - **Windows:** descarga [Git for Windows](https://git-scm.com/download/win) e instálalo.
-- **macOS:** abre Terminal y ejecuta `xcode-select --install` (ya viene incluido).
+- **macOS:** abre Terminal y ejecuta `xcode-select --install`.
 - **Linux (Ubuntu/Debian):** `sudo apt install git`
 
 ### Paso 2 — Configura tu identidad en Git (solo la primera vez)
-
-Abre una terminal y escribe:
 
 ```bash
 git config --global user.name "Tu Nombre Apellido"
@@ -103,50 +105,74 @@ cd RecursosHumanosCaixaBank
 
 ## Compilar el LaTeX localmente
 
-### Opción A — Con `latexmk` (recomendada, más automática)
+Este proyecto usa la clase `ugrTFG` (incluida en el repositorio como `ugrTFG.cls`). No necesitáis instalar ningún paquete adicional más allá de una distribución LaTeX estándar.
 
-`latexmk` detecta automáticamente cuántas pasadas necesita (para índices, referencias, etc.).
+### Requisitos de compilación
+
+El documento se compila con **pdflatex** (no requiere XeLaTeX ni LuaLaTeX).
+
+Las fuentes que usa la clase (`mathpazo`, `cabin`, `inconsolata`) están incluidas en las distribuciones LaTeX completas (TeX Live full, MiKTeX con gestor de paquetes activo).
+
+### Opción A — Con `pdflatex` directamente (más sencillo)
 
 ```bash
-# Desde la raíz del repositorio:
-latexmk -pdf main.tex
+# Desde la raíz del repositorio — SIEMPRE dos pasadas mínimo:
+pdflatex practica.tex
+pdflatex practica.tex
+```
+
+La segunda pasada es necesaria para que el índice de contenidos y las referencias internas se actualicen correctamente.
+
+### Opción B — Con `latexmk` (recomendada, automática)
+
+`latexmk` detecta automáticamente cuántas pasadas necesita:
+
+```bash
+latexmk -pdf practica.tex
 
 # Para limpiar los archivos auxiliares:
 latexmk -c
 ```
 
-El PDF resultante será `main.pdf` en la raíz del proyecto.
+### Opción C — Con bibliografía BibTeX (si añadís citas a `library.bib`)
 
-**Instalar latexmk:**
-- Windows (con MiKTeX): `miktex-console` → Packages → buscar `latexmk`
-- macOS/Linux: viene incluido con TeX Live (`sudo apt install texlive-full`)
-
-### Opción B — Con `pdflatex` directamente
+Si citáis referencias con `\cite{}`, necesitáis ejecutar BibTeX entre las pasadas de pdflatex:
 
 ```bash
-pdflatex main.tex
-pdflatex main.tex   # Segunda pasada para el índice de contenidos
+pdflatex practica.tex
+bibtex practica
+pdflatex practica.tex
+pdflatex practica.tex
 ```
 
-### Opción C — Con un editor gráfico (más fácil para Windows/macOS)
+O con `latexmk`, que lo hace automáticamente:
 
-- **[TeXstudio](https://www.texstudio.org/)** (gratuito, multiplataforma): abre `main.tex` y pulsa F5.
-- **[VS Code](https://code.visualstudio.com/)** + extensión **LaTeX Workshop**: compilación automática al guardar.
-- **[Overleaf](https://www.overleaf.com/)** online: ver sección siguiente.
+```bash
+latexmk -pdf practica.tex
+```
+
+### Opción D — Con un editor gráfico (más fácil para Windows/macOS)
+
+- **[TeXstudio](https://www.texstudio.org/)** (gratuito, multiplataforma): abre `practica.tex` y pulsa F5. Configura el compilador como pdflatex.
+- **[VS Code](https://code.visualstudio.com/)** + extensión **LaTeX Workshop**: compilación automática al guardar. Compila con pdflatex por defecto.
+- **[Overleaf](https://www.overleaf.com/)** online: ver sección siguiente. Overleaf usa pdflatex por defecto — compatible al 100%.
 
 ### Distribución LaTeX recomendada por sistema operativo
 
-| Sistema | Distribución |
-|---------|-------------|
-| Windows | [MiKTeX](https://miktex.org/) o [TeX Live](https://tug.org/texlive/) |
-| macOS   | [MacTeX](https://www.tug.org/mactex/) |
-| Linux   | `sudo apt install texlive-full texlive-lang-spanish` |
+| Sistema | Distribución | Instalación |
+|---------|-------------|-------------|
+| Windows | [MiKTeX](https://miktex.org/) | Descarga e instala. Activa la instalación automática de paquetes. |
+| Windows | [TeX Live](https://tug.org/texlive/) | Más completo, instala `texlive-full` |
+| macOS   | [MacTeX](https://www.tug.org/mactex/) | Paquete `.pkg` de instalación directa |
+| Linux   | TeX Live | `sudo apt install texlive-full texlive-lang-spanish` |
+
+> **Nota sobre fuentes:** si al compilar obtenéis un error sobre la fuente `cabin`, podéis cambiar la opción en `ugrTFG.cls` (el fallback ya está incluido: usa `iwona` automáticamente si `cabin` no está disponible).
 
 ---
 
 ## Usar Overleaf con Git
 
-[Overleaf](https://www.overleaf.com) es un editor LaTeX online que permite compilar sin instalar nada. La versión gratuita permite conectarlo con Git.
+[Overleaf](https://www.overleaf.com) es un editor LaTeX online que permite compilar sin instalar nada. La versión gratuita permite conectarlo con GitHub.
 
 ### Cómo vincular Overleaf con este repositorio de GitHub
 
@@ -154,20 +180,21 @@ pdflatex main.tex   # Segunda pasada para el índice de contenidos
 2. En Overleaf, haz clic en **New Project** → **Import from GitHub**.
 3. Autoriza a Overleaf para acceder a tu GitHub.
 4. Selecciona el repositorio `RecursosHumanosCaixaBank`.
-5. Overleaf sincronizará el repositorio. Usa el botón **Sync → Push to GitHub** para subir cambios desde Overleaf al repositorio, y **Pull from GitHub** para traer cambios de otros.
+5. El archivo principal a compilar es **`practica.tex`** (no `main.tex`). Configúralo en Overleaf: Menú → Compilador → Main document → `practica.tex`.
+6. Usa el botón **Sync → Push to GitHub** para subir cambios desde Overleaf, y **Pull from GitHub** para traer cambios de otros.
 
-> **Importante:** si usas Overleaf, sincroniza **antes de empezar a editar** (Pull) y **al terminar** (Push), para no sobreescribir el trabajo de los demás.
+> **Importante:** sincroniza **antes de empezar a editar** (Pull) y **al terminar** (Push), para no sobreescribir el trabajo de los demás.
 
 ---
 
 ## Flujo de trabajo con Git: cómo colaborar sin pisarnos
 
-El flujo recomendado para el equipo es **uno por uno en la rama principal** (sin ramas separadas, para no complicarlo):
+El flujo recomendado es **uno por uno en la rama principal** (sin ramas separadas, para no complicarlo):
 
 ### Flujo de trabajo básico (antes de cada sesión de trabajo)
 
 ```bash
-# 1. SIEMPRE empieza actualizando tu copia local con los últimos cambios del equipo:
+# 1. SIEMPRE empieza actualizando tu copia local:
 git pull
 
 # 2. Edita los archivos que te corresponden (¡solo los tuyos!).
@@ -176,8 +203,8 @@ git pull
 git status
 
 # 4. Añade los cambios al "staging area":
-git add secciones/XX_nombre_del_archivo.tex
-# (o añade varios de golpe: git add secciones/)
+git add capitulos/cap2_tema2.tex
+# (o añade una carpeta entera: git add capitulos/)
 
 # 5. Crea un commit con un mensaje descriptivo:
 git commit -m "feat: completo análisis de puestos con datos de la entrevista"
@@ -190,68 +217,71 @@ git push
 
 Un conflicto ocurre cuando dos personas han editado el mismo fragmento del mismo archivo. Git te avisará al hacer `git pull` o `git push`. Para resolverlo:
 
-```bash
-# Git marcará el conflicto en el archivo con estas marcas:
-# <<<<<<< HEAD
-# [Tu versión]
-# =======
-# [Versión del compañero]
-# >>>>>>> origin/main
+```
+<<<<<<< HEAD
+[Tu versión del texto]
+=======
+[Versión del compañero]
+>>>>>>> origin/main
 ```
 
 1. Abre el archivo en tu editor.
 2. Decide qué versión conservar (o combina ambas manualmente).
 3. Elimina las marcas `<<<<<<<`, `=======` y `>>>>>>>`.
-4. Guarda el archivo.
-5. Haz `git add <archivo>` y luego `git commit`.
+4. Guarda, luego `git add <archivo>` y `git commit`.
 
-**Para evitar conflictos:** respeta la asignación de secciones que aparece abajo.
+**Para evitar conflictos:** respeta la asignación de archivos de cada persona.
 
-### Asignación de secciones por persona
+### Asignación de archivos por persona
 
 | Persona | Archivos asignados |
 |---------|--------------------|
-| Persona 1 | `00_portada.tex`, `01_introduccion.tex` |
-| Persona 2 | `02_tema2_analisis_puestos.tex`, `03_tema2_descripcion_puestos.tex` |
-| Persona 3 | `04_tema2_rediseno_puestos.tex`, `05_tema2_nuevas_tendencias.tex` |
-| Persona 4 | `06_tema3_planificacion.tex`, `07_tema3_oferta_demanda.tex`, `08_tema3_equilibrio.tex` |
-| Persona 5 | `09_tema3_criterios_evaluacion.tex`, `10_tema3_procesos_sustractivos.tex`, `11_tema3_alternativas.tex`, `12_anexo.tex` |
+| Persona 1 | `capitulos/cap1_empresa.tex`, `preliminares/resumen.tex` |
+| Persona 2 | `capitulos/cap2_tema2.tex` (secciones 1 y 2) |
+| Persona 3 | `capitulos/cap2_tema2.tex` (secciones 3 y 4) |
+| Persona 4 | `capitulos/cap3_tema3.tex` (secciones 1, 2 y 3) |
+| Persona 5 | `capitulos/cap3_tema3.tex` (secciones 4, 5 y 6) + `apendices/entrevista.tex` |
 
-> Ajustadlo según vuestro propio reparto. Si sois 4 personas, repartid el trabajo de la Persona 5 entre las demás.
+> Ajustadlo según vuestro reparto. Si sois 4 personas, repartid las secciones del Capítulo 3 entre las demás.
+>
+> Si dos personas trabajan en el mismo archivo (`cap2_tema2.tex` o `cap3_tema3.tex`), coordinaos para no editar las mismas secciones al mismo tiempo.
 
 ---
 
 ## Convención de commits
 
-Usad mensajes de commit descriptivos. Ejemplos:
+Usad mensajes de commit descriptivos con prefijos:
 
 ```
 feat: añado descripción del puesto de Director de Oficina
-fix: corrijo error de compilación en tema2_analisis
-content: completo respuestas del anexo con datos entrevista
-style: mejoro formato de tablas en sección 3
-draft: esqueleto de la sección planificacion RRHH
+fix: corrijo error de compilación en cap2_tema2
+content: completo respuestas del apéndice con datos de entrevista
+style: mejoro formato de tablas en capítulo 3
+draft: esqueleto de la sección planificación RRHH
 ```
 
-Prefijos útiles:
+Prefijos:
 - `feat:` contenido nuevo
-- `fix:` corrección de errores
+- `fix:` corrección de errores (incluidos errores de LaTeX)
 - `content:` completar o mejorar contenido existente
-- `style:` cambios de formato sin modificar contenido
+- `style:` cambios de formato sin modificar el contenido
 - `draft:` borrador inicial de una sección
 
 ---
 
 ## Normas del equipo
 
-1. **No edites archivos que no sean los tuyos** sin avisar al grupo (evita conflictos).
-2. **Haz `git pull` siempre antes de empezar a escribir** en tu sesión de trabajo.
+1. **No edites archivos que no sean los tuyos** sin avisar al grupo (evita conflictos de Git).
+2. **Haz `git pull` siempre antes de empezar a escribir** en tu sesión.
 3. **Haz commits frecuentes y pequeños**, no uno gigante al final.
-4. **No subas archivos auxiliares de LaTeX** (`.aux`, `.log`, `.synctex.gz`...). El `.gitignore` ya los excluye, pero comprobadlo con `git status` antes de hacer `git add`.
-5. **Comunicación activa:** avisad al grupo por el canal de mensajería cuando terminéis una sección o si encontráis algún problema.
-6. **Respeta los comentarios `% TODO:`** en el LaTeX: son recordatorios de qué falta completar en cada sección.
-7. **Antes de entregar**, eliminad o comentad las cajas amarillas `\begin{notaequipo}...\end{notaequipo}` del `main.tex` si no queréis que aparezcan en la entrega final (o dejadlas si el/la profesor/a no lo prohíbe).
+4. **No subas archivos auxiliares de LaTeX** (`.aux`, `.log`, `.synctex.gz`...). El `.gitignore` ya los excluye, pero comprobadlo con `git status` antes de `git add`.
+5. **Comunicación activa:** avisad al grupo cuando terminéis una sección o si encontráis algún problema.
+6. **Respeta los comentarios `% TODO:`** en el LaTeX: son recordatorios de qué falta completar.
+7. **Antes de entregar**, si no queréis que las cajas amarillas de recordatorio aparezcan en el PDF final, comentad su contenido o eliminad el `\usepackage[most]{tcolorbox}` y el `\newtcolorbox{notaequipo}` en `practica.tex`.
+8. **El archivo principal es `practica.tex`** (no `main.tex`). Aseguraos de configurar vuestro editor o Overleaf para compilar ese archivo.
 
 ---
 
-*Repositorio creado y configurado para el grupo de trabajo — Curso 2025/2026*
+*Plantilla basada en [latex-mat-ugr/Plantilla-TFG](https://github.com/latex-mat-ugr/Plantilla-TFG) — Adaptada para prácticas grupales de RRHH I*
+
+*Repositorio configurado para el grupo de trabajo — Curso 2024/2025*

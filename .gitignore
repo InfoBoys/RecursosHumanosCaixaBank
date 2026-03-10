@@ -57,6 +57,9 @@
 *.brf
 *.lol
 
+# --- Carpeta temporal del clone de la plantilla UGR (se puede borrar) ---
+_plantilla_tmp/
+
 # --- Carpeta de compilación temporal de latexmk ---
 .latexmk_tmp/
 
