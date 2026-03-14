@@ -145,15 +145,18 @@
 
 % -------------------------------------------------------------------
 %  BACKMATTER
-%  (bibliografía)
+%  (bibliografía y fuentes consultadas)
 % -------------------------------------------------------------------
 \backmatter
 \pdfbookmark[-1]{Referencias}{BM-Referencias}
 
-\bibliographystyle{alpha-es}
-% Otros estilos: abbrv, plain, alpha-es, plain-es
-\begin{small}
-  \bibliography{library.bib}
-\end{small}
+% Fuentes consultadas (URLs y documentos teóricos)
+\input{capitulos/bibliografia}
+
+% Bibliografía BibTeX (si se añaden citas con \cite{})
+% \bibliographystyle{alpha-es}
+% \begin{small}
+%   \bibliography{library.bib}
+% \end{small}
 
 \end{document}
