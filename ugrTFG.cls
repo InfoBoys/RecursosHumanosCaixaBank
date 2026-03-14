@@ -97,7 +97,6 @@
   \renewcommand{\sfdefault}{iwona} 
 }
 \RequirePackage{inconsolata}
-
 \RequirePackage{setspace}
 \RequirePackage{xspace} % Para problemas de espaciado al definir comandos
 
