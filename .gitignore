@@ -76,3 +76,4 @@ Thumbs.db
 
 # --- El PDF compilado se sube explícitamente si se quiere ---
 # compilado/*.pdf   # <-- descomenta esta línea si NO quieres subir el PDF
+practica.pdf
