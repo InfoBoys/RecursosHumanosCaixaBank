@@ -76,4 +76,9 @@ Thumbs.db
 
 # --- El PDF compilado se sube explícitamente si se quiere ---
 # compilado/*.pdf   # <-- descomenta esta línea si NO quieres subir el PDF
-practica.pdf
+practica*.pdf
+
+# --- Material de apoyo (no versionar) ---
+docs_teoria/
+repomix*
+INFORME_REORGANIZACION_REPO.md
