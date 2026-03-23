@@ -179,6 +179,8 @@ Antes de editar: **Pull**. Al terminar: **Push**.
 4. Mantén `ugrTFG.cls`, `library.bib`, estilos `.bst` e imágenes como recursos globales compartidos.
 5. Si cambias la estructura de `\input` en un maestro, compílalo en ese mismo commit.
 
+> Revisar el directorio reparto, donde se suelen publicar los repartos provisionales de los trabajos.
+
 ---
 
 *Plantilla basada en [latex-mat-ugr/Plantilla-TFG](https://github.com/latex-mat-ugr/Plantilla-TFG), adaptada para prácticas grupales de RRHH I.*
