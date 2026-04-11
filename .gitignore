@@ -82,3 +82,6 @@ practica*.pdf
 docs_teoria/
 repomix*
 INFORME_REORGANIZACION_REPO.md
+
+# Carpeta con la teoria para que claude no fume...
+teoria/
