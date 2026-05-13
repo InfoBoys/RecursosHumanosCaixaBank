@@ -1,0 +1,210 @@
+% !TEX program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% ====================================================================
+% ARCHIVO PRINCIPAL — PORTAFOLIO GRUPAL FINAL (RECOPILATORIO)
+% Asignatura: Dirección de Recursos Humanos I
+% Doble Grado ADE-Ingenierías — Universidad de Granada
+% Empresa analizada: CaixaBank
+%
+% Nombre del fichero: CaixaBank, recopilatoria, GADE-INGENIERÍAS, grupo A
+%
+% INSTRUCCIONES DE COMPILACIÓN:
+%   pdflatex portafoliofinal.tex && pdflatex portafoliofinal.tex
+%   (dos pasadas para generar índice y referencias correctamente)
+%
+% Para la bibliografía BibTeX:
+%   pdflatex portafoliofinal.tex && bibtex portafoliofinal &&
+%   pdflatex portafoliofinal.tex && pdflatex portafoliofinal.tex
+% ====================================================================
+
+\documentclass[print, color]{ugrTFG}
+
+% -------------------------------------------------------------------
+%  INFORMACIÓN DEL TRABAJO Y LOS AUTORES
+% -------------------------------------------------------------------
+
+\renewcommand{\miTipoTrabajo}{Portafolio Grupal Final (Recopilatorio)}
+\renewcommand{\miAsignatura}{Dirección de Recursos Humanos I}
+
+\newcommand{\miTitulo}{Análisis Integral de la Gestión de Recursos Humanos en CaixaBank\xspace}
+
+\newcommand{\miNombre}{%
+  José Ángel Carretero Montes \\
+  David Bacas Posadas \\
+  Julián Carrión Tovar \\
+  Jesús Rodríguez González \\
+  Ismael Sallami Moreno \\
+}
+
+\newcommand{\miGrado}{Doble Grado ADE-Ingenierías}
+\newcommand{\miFacultad}{Facultad de Ciencias Empresariales y Escuela Técnica Superior de Ingenierías}
+\newcommand{\miUniversidad}{Universidad de Granada}
+
+\newcommand{\miTutor}{
+  Javier Aguilera Caracuel \\ \emph{Departamento de Organización de Empresas II}
+}
+
+\newcommand{\miCurso}{2025-2026}
+
+% -------------------------------------------------------------------
+%  PAQUETES ADICIONALES
+% -------------------------------------------------------------------
+
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{eurosym}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{rotating}
+\usepackage{csquotes}
+\usepackage{xcolor}
+\usepackage{soul}           % Para texto subrayado y resaltado
+
+% Cajas de color
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins, breakable}
+
+% -------------------------------------------------------------------
+%  COLORES Y COMANDOS PARA MEJORAS
+%  Las mejoras integradas respecto a entregas anteriores se muestran
+%  en color azul, facilitando su identificación en el portafolio.
+% -------------------------------------------------------------------
+
+\definecolor{ugrazul}{RGB}{0,75,135}
+\definecolor{mejorablue}{RGB}{0,90,160}
+\definecolor{mejoragreen}{RGB}{0,120,60}
+
+% Comando para marcar texto mejorado (azul)
+\newcommand{\mejora}[1]{\textcolor{mejorablue}{#1}}
+
+% Entorno para bloques de mejora destacados
+\newtcolorbox{bloquedemejora}{
+  enhanced, breakable,
+  colback=blue!5!white,
+  colframe=mejorablue,
+  fonttitle=\sffamily\bfseries\small,
+  title={Mejora integrada},
+  left=6pt, right=6pt, top=4pt, bottom=4pt,
+  before skip=8pt, after skip=8pt,
+  borderline west={3pt}{0pt}{mejorablue}
+}
+
+% Entorno notaequipo (recordatorio interno)
+\newtcolorbox{notaequipo}{
+  enhanced, breakable,
+  colback=yellow!15!white,
+  colframe=orange!70!black,
+  fonttitle=\sffamily\bfseries,
+  title={Recordatorio del equipo},
+  left=6pt, right=6pt, top=4pt, bottom=4pt,
+  before skip=8pt, after skip=8pt
+}
+
+% Entorno para recomendación global
+\newtcolorbox{recomendacion}[1][]{
+  enhanced, breakable,
+  colback=green!5!white,
+  colframe=mejoragreen,
+  fonttitle=\sffamily\bfseries,
+  title={Recomendación global},
+  left=6pt, right=6pt, top=4pt, bottom=4pt,
+  before skip=8pt, after skip=8pt,
+  #1
+}
+
+% -------------------------------------------------------------------
+%  METADATOS PDF
+% -------------------------------------------------------------------
+\hypersetup{
+  pdftitle={\miTitulo},
+  pdfauthor={Grupo GADE-Ingeniería A --- DRH I --- UGR},
+  pdfsubject={Portafolio Final — CaixaBank}
+}
+
+% ====================================================================
+\begin{document}
+% ====================================================================
+
+\maketitle
+
+% -------------------------------------------------------------------
+%  FRONTMATTER
+% -------------------------------------------------------------------
+\frontmatter
+
+\input{preliminares/resumen_portafolio}
+\input{preliminares/tablacontenidos}
+
+% -------------------------------------------------------------------
+%  MAINMATTER
+% -------------------------------------------------------------------
+\mainmatter
+
+% ====================================================================
+%  PARTE I — MEJORAS INTEGRADAS
+% ====================================================================
+\part{Mejoras sobre las prácticas previas}
+
+\input{capitulos/portafolio/mejoras}
+
+% ====================================================================
+%  PARTE II — PRÁCTICA GRUPAL: TEMAS 2 Y 3
+%  Análisis y Diseño de Puestos y Planificación de RRHH
+% ====================================================================
+\part{Práctica Grupal: Temas 2 y 3}
+
+\input{capitulos/practicat2t3/cap1_empresa}
+\input{capitulos/practicat2t3/cap2_tema2}
+\input{capitulos/practicat2t3/cap3_tema3}
+
+% ====================================================================
+%  PARTE III — PRÁCTICA GRUPAL: TEMAS 4 Y 5
+%  Reclutamiento, Selección e Integración
+% ====================================================================
+\part{Práctica Grupal: Temas 4 y 5}
+
+\input{capitulos/practicat4t5/cap4_tema4}
+\input{capitulos/practicat4t5/cap5_tema5}
+
+% ====================================================================
+%  PARTE IV — PRÁCTICA GRUPAL: TEMAS 6, 7 Y 8
+%  Formación, Evaluación del Rendimiento y Retribución
+% ====================================================================
+\part{Práctica Grupal: Temas 6, 7 y 8}
+
+\input{capitulos/practicat6t7t8/capitulos}
+
+% ====================================================================
+%  PARTE V — INFORME GLOBAL DE LA EMPRESA
+% ====================================================================
+\part{Informe Global de la Empresa}
+
+\input{capitulos/portafolio/informe_global}
+
+% ====================================================================
+%  PARTE VI — AUTOEVALUACIÓN DEL EQUIPO
+% ====================================================================
+\part{Autoevaluación del Equipo}
+
+\input{capitulos/portafolio/autoevaluacion}
+
+% -------------------------------------------------------------------
+%  APÉNDICES
+% -------------------------------------------------------------------
+\appendix
+\pdfbookmark[-1]{Apéndices}{appendix}
+
+\input{apendices/entrevista}
+\input{apendices/entrevista2}
+
+% -------------------------------------------------------------------
+%  BACKMATTER — BIBLIOGRAFÍA UNIFICADA
+% -------------------------------------------------------------------
+\backmatter
+\pdfbookmark[-1]{Referencias}{BM-Referencias}
+
+\input{capitulos/bibliografia/bibliografiaportafolio}
+
+\end{document}
