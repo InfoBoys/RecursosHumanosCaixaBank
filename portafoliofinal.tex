@@ -103,15 +103,19 @@
 }
 
 % Entorno para recomendación global
-\newtcolorbox{recomendacion}[1][]{
+% Uso: \begin{recomendacion}{N}{Título de la recomendación}
+\newtcolorbox{recomendacion}[2]{
   enhanced, breakable,
-  colback=green!5!white,
-  colframe=mejoragreen,
-  fonttitle=\sffamily\bfseries,
-  title={Recomendación global},
-  left=6pt, right=6pt, top=4pt, bottom=4pt,
-  before skip=8pt, after skip=8pt,
-  #1
+  frame hidden,
+  colback=white,
+  colbacktitle=white,
+  coltitle=black,
+  fonttitle=\rmfamily,
+  title={{\large\bfseries Recomendación #1}\\[2pt]{\normalsize\mdseries #2}},
+  titlerule=0.4pt,
+  titlerule style={black!50},
+  left=0pt, right=0pt, top=2pt, bottom=4pt,
+  before skip=10pt, after skip=10pt,
 }
 
 % -------------------------------------------------------------------
